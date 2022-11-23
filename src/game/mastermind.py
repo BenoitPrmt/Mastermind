@@ -1,4 +1,4 @@
-from random import randint
+from random import choices
 
 LISTE_COULEURS = ("B" , "J" , "V" , "R" , "N")
 
@@ -10,7 +10,7 @@ class Mastermind:
         self.solution = []
 
     def generate_solution(self):
-        self.solution = [LISTE_COULEURS[randint(0, len(LISTE_COULEURS))] for _ in range(4)]
+        self.solution = choices(LISTE_COULEURS, k=4)
 
     def compare(self, guess):
         retour = []
@@ -34,7 +34,7 @@ class Mastermind:
         assert len(guess) == 4, "La proposition doit être de 4 couleurs"
         assert all([c in LISTE_COULEURS for c in guess]), "La proposition doit être composée de couleurs valides" + str(LISTE_COULEURS)
 
-        return [guess[i] for i in range(4)]
+        return list(guess)
 
     def play(self):
         self.generate_solution()
