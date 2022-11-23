@@ -1,6 +1,7 @@
 from random import choices
 
-LISTE_COULEURS = ("B" , "J" , "V" , "R" , "N")
+LISTE_COULEURS = ("B", "J", "V", "R", "N")
+
 
 class Mastermind:
 
@@ -14,7 +15,7 @@ class Mastermind:
 
     def compare(self, guess) -> list[str]:
         retour = []
-    
+
         for i in range(len(guess)):
             if self.solution[i] == guess[i]:
                 retour.append("o")
@@ -22,7 +23,7 @@ class Mastermind:
                 retour.append("-")
             else:
                 retour.append("x")
-            
+
         return retour
 
     def test_win(self, guess: list[str]) -> bool:
@@ -32,7 +33,8 @@ class Mastermind:
         guess = input('Proposition (ex : BJNJ) :').upper()
 
         assert len(guess) == 4, "La proposition doit être de 4 couleurs"
-        assert all([c in LISTE_COULEURS for c in guess]), "La proposition doit être composée de couleurs valides" + str(LISTE_COULEURS)
+        assert all([c in LISTE_COULEURS for c in guess]), "La proposition doit être composée de couleurs valides" + str(
+            LISTE_COULEURS)
 
         return list(guess)
 
@@ -47,11 +49,11 @@ class Mastermind:
 
             print("-----------------------------------------------")
 
-
             if self.test_win(guess):
                 print("Bravo vous avez gagné en {} tours !".format(self.guesses))
                 return
         print("Vous avez perdu... La solution était {} !".format(self.solution))
+
 
 if __name__ == "__main__":
     mastermind = Mastermind()
