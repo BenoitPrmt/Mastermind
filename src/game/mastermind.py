@@ -1,6 +1,7 @@
 from random import choices
 
 LISTE_COULEURS = ("B", "J", "V", "R", "N")
+help = "B: Bleu, J: Jaune, V: Vert, R: Rouge, N: Noir"
 
 
 class Mastermind:
@@ -30,6 +31,7 @@ class Mastermind:
         return self.compare(guess) == ["o", "o", "o", "o"]
 
     def ask_guess(self) -> list[str]:
+        print(f"Tour n°{self.guesses + 1}")
         guess = input('Proposition (ex : BJNJ) :').upper()
 
         assert len(guess) == 4, "La proposition doit être de 4 couleurs"
@@ -40,6 +42,11 @@ class Mastermind:
 
     def play(self):
         self.generate_solution()
+
+        print("Bienvenue dans le jeu du Mastermind !")
+        print("Vous devez trouver la combinaison de 4 couleurs parmi les suivantes :")
+        print(help)
+        print("-----------------------------------------------")
 
         while self.guesses < self.tries:
             guess = self.ask_guess()
