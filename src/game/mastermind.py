@@ -4,7 +4,7 @@ LISTE_COULEURS = ("B" , "J" , "V" , "R" , "N")
 
 class Mastermind:
 
-    def __init__(self, tries=8):
+    def __init__(self, tries: int = 8):
         self.tries = tries
         self.guesses = 0
         self.solution = []
@@ -12,7 +12,7 @@ class Mastermind:
     def generate_solution(self):
         self.solution = choices(LISTE_COULEURS, k=4)
 
-    def compare(self, guess):
+    def compare(self, guess) -> list[str]:
         retour = []
     
         for i in range(len(guess)):
@@ -25,11 +25,11 @@ class Mastermind:
             
         return retour
 
-    def test_win(self, guess):
+    def test_win(self, guess: list[str]) -> bool:
         return self.compare(guess) == ["o", "o", "o", "o"]
 
-    def ask_guess(self):
-        guess = input('Proposition (ex : BJNJ) :')
+    def ask_guess(self) -> list[str]:
+        guess = input('Proposition (ex : BJNJ) :').upper()
 
         assert len(guess) == 4, "La proposition doit être de 4 couleurs"
         assert all([c in LISTE_COULEURS for c in guess]), "La proposition doit être composée de couleurs valides" + str(LISTE_COULEURS)
